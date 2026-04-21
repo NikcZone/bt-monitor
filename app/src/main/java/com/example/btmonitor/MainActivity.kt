@@ -61,9 +61,9 @@ class MainActivity : AppCompatActivity() {
         }
         var rb = findViewById<RadioGroup>(R.id.rgMicMode)
         MonitorService.micSource = if (rb.checkedRadioButtonId == R.id.rbMic)
-	Mediarecorder.AudioSource.MIC
+	MediaRecorder.AudioSource.MIC
         else
-	Mediarecorder.AudioSource.VOICE_COMMUNICATION
+	MediaRecorder.AudioSource.VOICE_COMMUNICATION
 
         startForegroundService(intent)
         updateUI()
