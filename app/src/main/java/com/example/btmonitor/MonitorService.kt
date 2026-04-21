@@ -22,7 +22,7 @@ class MonitorService : Service() {
         var isRunning = false
         var micSource = MediaRecorder.AudioSource.MIC
     }
-    
+
     private lateinit var audioManager: AudioManager
     private var audioRecord: AudioRecord? = null
     private var audioTrack: AudioTrack? = null
@@ -71,11 +71,10 @@ class MonitorService : Service() {
     private fun startMonitoring() {
         isRunning = true
 
-        // WakeLock per tenere CPU attiva in standby
         val pm = getSystemService(POWER_SERVICE) as PowerManager
         wakeLock = pm.newWakeLock(
             PowerManager.PARTIAL_WAKE_LOCK, "BTMonitor::WakeLock"
-        ).also { it.acquire(60 * 60 * 1000L) } // max 1 ora
+        ).also { it.acquire(60 * 60 * 1000L) }
 
         startForeground(NOTIF_ID, buildNotification("Connessione BT SCO…"))
 
@@ -113,6 +112,14 @@ class MonitorService : Service() {
             micSource,
             SAMPLE_RATE, CHANNEL_IN, ENCODING, bufSize
         )
+
+        // Forza microfono interno del telefono
+        val devices = audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS)
+        val phoneMic = devices.firstOrNull {
+            it.type == AudioDeviceInfo.TYPE_BUILTIN_MIC
+        }
+        phoneMic?.let { audioRecord?.preferredDevice = it }
+
         audioTrack = AudioTrack(
             AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
