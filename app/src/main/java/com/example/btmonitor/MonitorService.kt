@@ -109,7 +109,7 @@ class MonitorService : Service() {
         ) * 2
 
         audioRecord = AudioRecord(
-            MediaRecorder.AudioSource.VOICE_COMMUNICATION,
+            MediaRecorder.AudioSource.MIC,
             SAMPLE_RATE, CHANNEL_IN, ENCODING, bufSize
         )
         audioTrack = AudioTrack(
