@@ -20,8 +20,9 @@ class MonitorService : Service() {
         const val CHANNEL_ID = "bt_monitor_channel"
         const val NOTIF_ID = 1
         var isRunning = false
+        var micSource = MediaRecorder.AudioSource.MIC
     }
-    var micSource = MediaRecorder.AudioSource.MIC
+    
     private lateinit var audioManager: AudioManager
     private var audioRecord: AudioRecord? = null
     private var audioTrack: AudioTrack? = null
