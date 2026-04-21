@@ -59,6 +59,12 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, MonitorService::class.java).apply {
             action = MonitorService.ACTION_START
         }
+        var rb = findViewById<RadioGroup>(R.id.rgMicMode)
+        MonitorService.micSource = if (rb.checkedRadioButtonId == R.id.rbMic)
+	Mediarecorder.AudioSource.MIC
+        else
+	Mediarecorder.AudioSource.VOICE_COMMUNICATION
+
         startForegroundService(intent)
         updateUI()
     }
