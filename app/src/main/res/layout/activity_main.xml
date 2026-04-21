@@ -12,7 +12,30 @@
         android:layout_height="wrap_content"
         android:text="Pronto"
         android:textSize="18sp"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="24dp" />
+
+    <RadioGroup
+        android:id="@+id/rgMicMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="32dp">
+
+        <RadioButton
+            android:id="@+id/rbMic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MIC"
+            android:checked="true"
+            android:layout_marginEnd="24dp"/>
+
+        <RadioButton
+            android:id="@+id/rbVoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VOICE"/>
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/btnToggle"
