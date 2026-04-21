@@ -29,7 +29,7 @@ class MonitorService : Service() {
     private val handler = Handler(Looper.getMainLooper())
     private var wakeLock: PowerManager.WakeLock? = null
 
-    private val SAMPLE_RATE = 44000
+    private val SAMPLE_RATE = 44100
     private val CHANNEL_IN = AudioFormat.CHANNEL_IN_MONO
     private val CHANNEL_OUT = AudioFormat.CHANNEL_OUT_MONO
     private val ENCODING = AudioFormat.ENCODING_PCM_16BIT
