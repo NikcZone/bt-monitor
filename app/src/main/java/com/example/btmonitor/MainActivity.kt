@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         else
             MediaRecorder.AudioSource.VOICE_COMMUNICATION
 
+        MonitorService.isRunning = true
         sendAction(MonitorService.ACTION_START)
         updateUI()
     }
