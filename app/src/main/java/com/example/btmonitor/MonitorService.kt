@@ -21,7 +21,7 @@ class MonitorService : Service() {
         const val NOTIF_ID = 1
         var isRunning = false
     }
-
+    var micSource = MediaRecorder.AudioSource.MIC
     private lateinit var audioManager: AudioManager
     private var audioRecord: AudioRecord? = null
     private var audioTrack: AudioTrack? = null
@@ -29,7 +29,7 @@ class MonitorService : Service() {
     private val handler = Handler(Looper.getMainLooper())
     private var wakeLock: PowerManager.WakeLock? = null
 
-    private val SAMPLE_RATE = 16000
+    private val SAMPLE_RATE = 44000
     private val CHANNEL_IN = AudioFormat.CHANNEL_IN_MONO
     private val CHANNEL_OUT = AudioFormat.CHANNEL_OUT_MONO
     private val ENCODING = AudioFormat.ENCODING_PCM_16BIT
@@ -109,7 +109,7 @@ class MonitorService : Service() {
         ) * 2
 
         audioRecord = AudioRecord(
-            MediaRecorder.AudioSource.MIC,
+            micSource,
             SAMPLE_RATE, CHANNEL_IN, ENCODING, bufSize
         )
         audioTrack = AudioTrack(
